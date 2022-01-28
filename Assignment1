@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stopWatch</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 25px;
+        font-weight: 400;
+      }
+
+      body {
+        width: 100%;
+        max-width: 500px;
+        margin: 1.5rem auto;
+        height: 70vh;
+
+        box-shadow: 1px 2px 18px rgba(172, 169, 169, 0.4);
+      }
+      .stopwatch {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        row-gap: 2rem;
+      }
+      .stopwatch .text {
+        font-weight: 600;
+        font-size: 38px;
+      }
+      .stopwatch .show_timer {
+        display: flex;
+        justify-content: center;
+        column-gap: 1rem;
+        padding: 10px;
+        border-radius: 12px;
+        background-color: lightseagreen;
+        box-shadow: 1px 2px 13px rgba(172, 169, 169, 0.4);
+        color: white;
+        position: relative;
+      }
+      .stopwatch .button-div {
+        display: flex;
+        column-gap: 1rem;
+      }
+      .stopwatch .button-div button {
+        background-color: rgba(0, 0, 0, 1);
+        border-radius: 12px;
+        border-style: none;
+        box-shadow: 1px 1px 19px rgba(66, 65, 65, 0.3);
+        padding: 0.2rem 0.5rem;
+        text-align: center;
+        transition: all 200ms ease-in-out;
+        color: white;
+      }
+      #start-timer {
+        background-color: rgb(76, 202, 76);
+      }
+      #stop-timer {
+        background-color: rgb(235, 84, 84);
+      }
+      button:hover {
+        transform: scale(1.1);
+        transition: all 200ms ease-in-out;
+      }
+      #error {
+        color: red;
+        position: absolute;
+        font-size: 17px;
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        left: 0px;
+        top: 60px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="stopwatch">
+      <div class="text">Stop-Watch🚀</div>
+      <div class="show_timer">
+        <span class="min">00 m</span><span>:</span><span class="sec">00 s</span>
+        <span id="error"></span>
+      </div>
+
+      <div class="button-div">
+        <button id="start-timer">Start</button>
+        <button id="stop-timer">Stop</button>
+        <button id="reset-timer">Reset</button>
+      </div>
+    </div>
+    <div style="margin-top: 0.6rem; font-size: medium; font-weight: 700">
+      🔰Made by Diwyanshu19
+    </div>
+    <script>
+      let minSpan = document.querySelector(".min");
+      let secSpan = document.querySelector(".sec");
+      let start = document.getElementById("start-timer");
+      let stop = document.getElementById("stop-timer");
+      let reset = document.getElementById("reset-timer");
+      let err = document.getElementById("error");
+      let intervalId;
+      let global = 1;
+      start.addEventListener("click", (e) => {
+        if (intervalId) {
+          err.textContent = "🚩click one time";
+          return;
+        }
+        err.textContent = "";
+        let time = global;
+
+        intervalId = setInterval(() => {
+          let sec = Math.floor(time % 60);
+          let min = Math.floor(time / 60);
+          console.log(sec);
+          secSpan.textContent = `${sec > 9 ? "" : "0"}${sec} s`;
+          minSpan.textContent = `${min > 9 ? "" : "0"}${min} m`;
+          time++;
+          global = time;
+        }, 1000);
+      });
+      stop.addEventListener("click", (e) => {
+        if (!intervalId) {
+          err.textContent = "🚩Start timer first";
+          return;
+        }
+        err.textContent = "";
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+      reset.addEventListener("click", (e) => {
+        if (!intervalId && global == 1) {
+          err.textContent = "🚧Start timer first";
+          return;
+        }
+        err.textContent = "";
+        global = 1;
+        secSpan.textContent = "00 s";
+        minSpan.textContent = "00 m";
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+    </script>
+  </body>
+</html>
