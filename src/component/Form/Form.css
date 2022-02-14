@@ -1,0 +1,83 @@
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 22px;
+  padding: 0.3rem;
+  color: rgba(148, 145, 145, 0.849);
+  font-weight: 600;
+}
+
+.form form button {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 20px;
+
+  background: #01d28e;
+  border: 1px solid #01d28e;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.form form button:hover {
+  background: #6cf0c2;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 1.6rem;
+}
+.button-container .sM {
+  position: absolute;
+  color: rgba(31, 31, 233, 0.849);
+  bottom: 0;
+  cursor: pointer;
+}
+.login-form {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  /* position: absolute; */
+  bottom: -12px;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+  font-size: 25px;
+}
+.form {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+.form form {
+  width: min(350px, 100%);
+  margin: auto;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 2px 2px 11px rgba(119, 136, 153, 0.671);
+  height: auto;
+}
